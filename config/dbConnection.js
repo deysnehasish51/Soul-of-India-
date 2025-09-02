@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
 const dotenv = require('dotenv'); // Import the dotenv library
 
 // Load environment variables from the .env file
@@ -12,11 +13,8 @@ const connectDB = async () => {
       throw new Error('MONGO_URI is not defined in the .env file.');
     }
 
-    // Connect to MongoDB
-    await mongoose.connect(db, {
-      useNewUrlParser: true,  // Use the new URL parser
-      useUnifiedTopology: true,  // Use the unified topology engine
-    });
+    // Connect to MongoDB (⚠️ removed deprecated options)
+    await mongoose.connect(db);
     console.log('✅ MongoDB connected...');
   } catch (err) {
     // Log error and terminate the process if connection fails

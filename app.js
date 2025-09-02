@@ -61,7 +61,6 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(express.static("public"));
 // app.use("/assets", express.static("assets"));
 
-
 // Flash Messages Middleware
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash('success');
@@ -193,15 +192,9 @@ app.delete('/api/file/:filename', async (req, res) => {
   }
 });
 
-// Serve static files
-// app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// app.use('/uploads', express.static('uploads'));
-
 // Serve static assets (CSS, JS, Images, Videos)
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 
 // Routes
 app.use(mapRoutes);
@@ -332,8 +325,11 @@ app.get('/folklores', (req, res) => {
   res.render('folklores'); // Render the folklores.ejs file
 });
 
-// Start Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Start Server (commented out for Vercel)
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+// ✅ Export app for Vercel serverless functions
+module.exports = app;
