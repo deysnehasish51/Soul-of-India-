@@ -1,11 +1,12 @@
 {
-  "name": "ekta",
+  "name": "soul_of_india",
   "version": "1.0.0",
   "description": "A website that showcases the rich cultural heritage and traditions of India.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js -e html,css,js,ejs"
+    "dev": "nodemon app.js -e html,css,js,ejs",
+    "build": "echo \"No build step required\""
   },
   "keywords": [
     "cultural",
