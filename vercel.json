@@ -4,8 +4,18 @@
     { "src": "app.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/assets/(.*)", "dest": "/assets/$1", "headers": { "cache-control": "public, max-age=31536000, immutable" } },
-    { "src": "/uploads/(.*)", "dest": "/uploads/$1" },
-    { "src": "/(.*)", "dest": "/app.js" }
+    { "src": "/api/(.*)", "dest": "app.js" },
+    { "src": "/auth/(.*)", "dest": "app.js" },
+    { "src": "/(.*)", "dest": "app.js" },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1",
+      "headers": { "cache-control": "public, max-age=31536000, immutable" }
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/uploads/$1",
+      "headers": { "cache-control": "public, max-age=31536000, immutable" }
+    }
   ]
 }

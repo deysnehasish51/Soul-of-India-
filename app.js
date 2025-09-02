@@ -325,11 +325,12 @@ app.get('/folklores', (req, res) => {
   res.render('folklores'); // Render the folklores.ejs file
 });
 
+
 // Start Server (commented out for Vercel)
- const PORT = process.env.PORT || 3000;
- app.listen(PORT, () => {
-   console.log(`Server is running on port ${PORT}`);
- });
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+// console.log(`Server is running on port ${PORT}`);
+// });
 
 // ✅ Export app for Vercel serverless functions
-// module.exports = app;
+module.exports = app;
