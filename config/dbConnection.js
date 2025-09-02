@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.set('strictQuery', false);
-const dotenv = require('dotenv'); // Import the dotenv library
+const dotenv = require('dotenv');
 
 // Load environment variables from the .env file
 dotenv.config();
@@ -10,14 +9,14 @@ const connectDB = async () => {
   try {
     const db = process.env.MONGO_URI; // MongoDB connection URI from .env file
     if (!db) {
-      throw new Error('MONGO_URI is not defined in the .env file.');
+      throw new Error('❌ MONGO_URI is not defined in the .env file.');
     }
 
-    // Connect to MongoDB (⚠️ removed deprecated options)
+    // Connect to MongoDB (no deprecated options needed in Mongoose v6+)
     await mongoose.connect(db);
+
     console.log('✅ MongoDB connected...');
   } catch (err) {
-    // Log error and terminate the process if connection fails
     console.error('❌ MongoDB connection error:', err.message);
     process.exit(1); // Exit with failure code
   }
@@ -27,7 +26,9 @@ const connectDB = async () => {
 const db = mongoose.connection;
 
 // Bind connection to error event for debugging
-db.on('error', console.error.bind(console, '❌ MongoDB connection error:'));
+db.on('error', (error) => {
+  console.error('❌ MongoDB connection error:', error);
+});
 
 // Bind connection to open event for confirmation
 db.once('open', () => {
@@ -37,4 +38,4 @@ db.once('open', () => {
 // Call the connectDB function to establish the connection
 connectDB();
 
-module.exports = connectDB; // Export the function for reuse in other modules
+module.exports = connectDB; // Export the function for reuse

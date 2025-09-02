@@ -70,7 +70,7 @@ app.use((req, res, next) => {
 });
 
 // MongoDB Connection Setup
-const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/cultureHeritage';
+const mongoURI = process.env.MONGO_URI || 'mongodb+srv://deysnehasish51:Sanju%402002@soulofindiacluster.rfzooqv.mongodb.net/mydb?retryWrites=true&w=majority&appName=SoulOfIndiaCluster';
 
 // Connect to MongoDB
 mongoose.connect(mongoURI, {
@@ -326,10 +326,10 @@ app.get('/folklores', (req, res) => {
 });
 
 // Start Server (commented out for Vercel)
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
+ const PORT = process.env.PORT || 3000;
+ app.listen(PORT, () => {
+   console.log(`Server is running on port ${PORT}`);
+ });
 
 // ✅ Export app for Vercel serverless functions
-module.exports = app;
+// module.exports = app;
