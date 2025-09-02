@@ -36,7 +36,7 @@ const authController = require("./controller/authController");
 
 const uploadRoutes = require('./routes/upload');
 app.use('/api', uploadRoutes);
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
 
 require('dotenv').config();
 require('./config/dbConnection.js');
@@ -59,7 +59,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(__dirname));
 app.use(express.urlencoded({ extended: true }));
 // app.use(express.static("public"));
-app.use("/assets", express.static("assets"));
+// app.use("/assets", express.static("assets"));
 
 
 // Flash Messages Middleware
@@ -194,9 +194,14 @@ app.delete('/api/file/:filename', async (req, res) => {
 });
 
 // Serve static files
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/uploads', express.static('uploads')); // Serve uploaded files
+// app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use('/uploads', express.static('uploads'));
+
+// Serve static assets (CSS, JS, Images, Videos)
+app.use("/assets", express.static(path.join(__dirname, "assets")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 
 // Routes
 app.use(mapRoutes);
